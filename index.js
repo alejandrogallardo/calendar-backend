@@ -6,6 +6,10 @@ const app = express();
 // console.log(prosses.env);
 
 app.use( express.static('public' ));
+
+// lectura y parseo del body
+app.use( express.json() );
+
 app.use('/api/auth', require('./routes/auth'));
 
 /*app.get('/', (req, res) => {
