@@ -1,7 +1,9 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const router = Router();
+const { validarCampos } = require('../middlewares/validar-campos');
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/AuthController')
+
+const router = Router();
 
 /*router.get('/', (req, res) => {
     res.json({
@@ -13,7 +15,8 @@ router.post(
     '/',
     [
         check('email', 'El email es obligarorio').isEmail(),
-        check('password', 'El debe ser mayor a 6 caracteres').isLength({ min: 6 })
+        check('password', 'El debe ser mayor a 6 caracteres').isLength({ min: 6 }),
+        validarCampos
     ],
     loginUsuario);
 
@@ -22,7 +25,8 @@ router.post(
     [
         check('name', 'El nombre es obligarorio').not().isEmpty(),
         check('email', 'El email es obligarorio').isEmail(),
-        check('password', 'El debe ser mayor a 6 caracteres').isLength({ min: 6 })
+        check('password', 'El debe ser mayor a 6 caracteres').isLength({ min: 6 }),
+        validarCampos
     ],
     crearUsuario);
 
